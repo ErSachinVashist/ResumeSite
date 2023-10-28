@@ -174,7 +174,6 @@ body {
     background-size: 110%;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(assets/images/mypic4.png);
 }
 
 .homeDiv.addHire>div:last-child {
@@ -416,7 +415,7 @@ div.skillsDiv, div.qualDiv, div.workDiv, div.contactDiv {
     z-index: 111;
 }
 
-.skillsCard>div>div>p {
+.skillsCard>div>div>p:nth-child(2) {
     font-size: var(--h1);
     font-weight: bold;
     margin: 20px 0;
@@ -572,6 +571,10 @@ div.qualDiv, div.contactDiv {
     padding: 8px 0;
     font-size: var(--h4);
     text-transform: initial;
+}
+
+.contactInfo td svg{
+    vertical-align: middle;
 }
 
 .contactInfo table {

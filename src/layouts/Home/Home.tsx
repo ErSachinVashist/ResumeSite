@@ -5,7 +5,7 @@ import {
   FaLinkedinIn,
   FaFileAlt,
 } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { makeActive } from "../../store/HeaderSlice";
 import { TopContext } from "../../App";
 
@@ -20,19 +20,16 @@ const showHireFun = (state, action) => {
   }
 };
 function Home(props) {
-  const [showHireReduce, showHireDispatch] = useReducer(showHireFun, false),
-    dispatch = useDispatch(),
-    { goToLink } = props,
-    { name } = useContext(TopContext);
+  const [showHireReduce, showHireDispatch] = useReducer(showHireFun, false);
+  const dispatch = useDispatch();
+  const { goToLink } = props;
+  const { aboutMe = {} } = useSelector((state) => state.contentData);
 
   return (
     <div className={"homeDiv " + (showHireReduce ? "addHire" : "")}>
       <div>
-        {/* <TopContext.Consumer>
-          {data=><p>I'm {data.name}</p>}
-        </TopContext.Consumer> */}
-        <p>I'm {name}</p>
-        <div>Enthusiastic Full stack Web Developer</div>
+        <p>{`I'm ${aboutMe.firstName} ${aboutMe.lastName}`}</p>
+        <div>{aboutMe.subTitle}</div>
         <button
           className="cstbtn"
           onClick={() => showHireDispatch({ type: "hire" })}
@@ -50,15 +47,15 @@ function Home(props) {
         <p className="iconsDiv">
           <span className="hoverTitle">
             <FaMobileAlt />
-            <b>+918860496464</b>
+            <b>{aboutMe.phoneNumber}</b>
           </span>
-          <span onClick={() => goToLink("linkedin")}>
+          <span onClick={() => goToLink(aboutMe.linkedIn)}>
             <FaLinkedinIn />
           </span>
-          <span onClick={() => goToLink("mail")}>
+          <span onClick={() => goToLink(`mailto:${aboutMe.email}`)}>
             <FaGooglePlusG />
           </span>
-          <span onClick={() => goToLink("resume")}>
+          <span onClick={() => goToLink(aboutMe.resume)}>
             <FaFileAlt />
           </span>
         </p>
@@ -74,7 +71,11 @@ function Home(props) {
           Back
         </button>
       </div>
-      <div></div>
+      <div
+        style={{
+          backgroundImage: `url(${aboutMe.homeImage?.fields?.file?.url})`,
+        }}
+      ></div>
     </div>
   );
 }

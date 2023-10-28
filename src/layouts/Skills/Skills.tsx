@@ -1,9 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { makeActive } from "../../store/HeaderSlice";
 
 function Skills() {
-  const { commSkills, techSkills } = useSelector((state) => state.skillsData),
-    dispatch = useDispatch();
+  const { skills } = useSelector((state) => state.contentData);
+  const dispatch = useDispatch();
+  const skillObj = { softSkills: [], techSkills: [] };
+  skills?.forEach((skill) => {
+    skillObj[skill.skillType === "Soft" ? "softSkills" : "techSkills"].push(
+      skill
+    );
+  });
   return (
     <div className="skillsDiv">
       <div className="divHeading">Skills</div>
@@ -16,12 +23,14 @@ function Skills() {
       </div>
 
       <div className="skillsCircle">
-        {commSkills.map((skill, index) => (
+        {skillObj.softSkills.map((skill, index) => (
           <div
             key={index}
             className="circle-border"
             style={{
-              background: `linear-gradient(270deg, var(--activeColor) ${skill.score}%, transparent 0%), linear-gradient(10deg, var(--activeColor) 50%, lightgray 50%)`,
+              background: `linear-gradient(270deg, var(--activeColor) ${
+                skill.score * 10
+              }%, transparent 0%), linear-gradient(10deg, var(--activeColor) 50%, lightgray 50%)`,
             }}
           >
             <div className="circle">{skill.title}</div>
@@ -29,12 +38,12 @@ function Skills() {
         ))}
       </div>
       <div className="skillsCard">
-        {techSkills.map((skill, index) => (
+        {skillObj.techSkills.map((skill, index) => (
           <div key={index}>
             <div>
               <img src={skill.icon} alt="img" />
               <p>{skill.title}</p>
-              {skill.desp}
+              {documentToReactComponents(skill.description)}
             </div>
           </div>
         ))}

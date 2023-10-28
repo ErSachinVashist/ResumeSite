@@ -1,19 +1,21 @@
 import { useSelector, useDispatch } from "react-redux";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { makeActive } from "../../store/HeaderSlice";
 
 function Qualifications() {
-  const { qualData } = useSelector((state) => state.qualData),
-    dispatch = useDispatch();
+  const { qualification } = useSelector((state) => state.contentData);
+  const dispatch = useDispatch();
+
   return (
     <div className="qualDiv">
       <div className="divHeading">Qualifications</div>
       <div className="eduCard">
-        {qualData.map((qual, index) => (
+        {qualification?.map((qual, index) => (
           <div key={index}>
-            {qual.batch}
+            {qual.batchYear}
             <p>{qual.title}</p>
-            {qual.inst}
-            <p>{qual.desp}</p>
+            {qual.institution}
+            <div>{documentToReactComponents(qual.description)}</div>
           </div>
         ))}
       </div>

@@ -1,45 +1,51 @@
 import { useDispatch, useSelector } from "react-redux";
-import Achivements from "../Achivements";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Achievements from "../Achievements";
 import { makeActive } from "../../store/HeaderSlice";
 
 function Work() {
-  const dispatch = useDispatch(),
-    { exp, work, achieve } = useSelector((state) => state.workData);
+  const dispatch = useDispatch();
+  const {
+    workExperience,
+    achievement,
+    aboutMe = {},
+  } = useSelector((state) => state.contentData);
 
   return (
     <div className="workDiv">
       <div className="divHeading">Work Experience</div>
       <div className="workExDesp">
         <div>
-          <span>{exp.years}</span> Years of <br />
+          <span>{aboutMe.workExperience}</span> Years of <br />
           Experience
         </div>
         <div>
-          <span>{exp.clients}</span> Satisfied <br />
+          <span>{aboutMe.totalClients}</span> Satisfied <br />
           Clients
         </div>
         <div>
-          <span>{exp.projects}</span>Projects <br />
+          <span>{aboutMe.totalProjects}</span>Projects <br />
           Delivered
         </div>
       </div>
       <div className="workCol">
-        {work.map((comp, index) => (
+        {workExperience?.map((comp, index) => (
           <div key={index} className="workCard">
-            <img src={comp.img} alt="img" />
+            <img src={comp.icon} alt="img" />
             <div>
               <p>{comp.role}</p>
-              {comp.company}
+              {comp.title}
               <br />
-              {comp.duration}
+              {`${comp.startDate} - ${comp.endDate}`}
             </div>
             <div className="workOverlay">
-              <div>Description </div> {comp.desp}{" "}
+              <div>Description </div>{" "}
+              {documentToReactComponents(comp.description)}
             </div>
           </div>
         ))}
       </div>
-      <Achivements achieve={achieve} />
+      <Achievements achievement={achievement} />
       <button
         className="cstbtn nxtBtn"
         onClick={() => dispatch(makeActive("contactDiv"))}

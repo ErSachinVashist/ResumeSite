@@ -20,10 +20,11 @@ const reqFields = ["message", "email"],
     errorArray: [],
   };
 function Contact(props) {
-  const { goToLink } = props,
-    { sending } = useSelector((state) => state.contactData),
-    dipatch = useDispatch(),
-    [formData, changeFormData] = useState(defaultVals);
+  const { goToLink } = props;
+  const { sending } = useSelector((state) => state.contactData);
+  const { aboutMe = {} } = useSelector((state) => state.contentData);
+  const dipatch = useDispatch();
+  const [formData, changeFormData] = useState(defaultVals);
 
   useEffect(() => {
     if (!sending) changeFormData(defaultVals);
@@ -63,46 +64,46 @@ function Contact(props) {
           <table>
             <tbody>
               <tr>
-                <td width="15%">
+                <td width="10%">
                   <MdLocationOn />
                 </td>
-                <td>New Delhi, India</td>
+                <td>{aboutMe.location}</td>
               </tr>
               <tr>
                 <td>
                   <MdEmail />
                 </td>
-                <td>sachinvashist82@gmail.com</td>
+                <td>{aboutMe.email}</td>
               </tr>
               <tr>
                 <td>
                   <IoLogoWhatsapp />
                 </td>
-                <td>+918860496464</td>
+                <td>{aboutMe.phoneNumber}</td>
               </tr>
               <tr>
                 <td>
                   <FaGlobeAmericas />
                 </td>
-                <td>ersachinvashist.github.io/ResumeSite</td>
+                <td>{aboutMe.website}</td>
               </tr>
             </tbody>
           </table>
           Follow Me
           <p className="iconsDiv">
-            <span onClick={() => goToLink("linkedin")}>
+            <span onClick={() => goToLink(aboutMe.linkedIn)}>
               <FaLinkedinIn />
             </span>
-            <span onClick={() => goToLink("twitter")}>
+            <span onClick={() => goToLink(aboutMe.twitter)}>
               <FaTwitter />
             </span>
-            <span onClick={() => goToLink("github")}>
+            <span onClick={() => goToLink(aboutMe.gitHub)}>
               <FiGithub />
             </span>
-            <span onClick={() => goToLink("fb")}>
+            <span onClick={() => goToLink(aboutMe.facebook)}>
               <FaFacebookF />
             </span>
-            <span onClick={() => goToLink("insta")}>
+            <span onClick={() => goToLink(aboutMe.instagram)}>
               <FiInstagram />
             </span>
           </p>
