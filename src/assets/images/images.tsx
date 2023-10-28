@@ -1,0 +1,25 @@
+const IMAGES = {
+  honda: new URL("./honda.png", import.meta.url).href,
+  qss: new URL("./qss.png", import.meta.url).href,
+  serverguy: new URL("./serverguy.png", import.meta.url).href,
+  genpact: new URL("./genpact.png", import.meta.url).href,
+  accenture: new URL("./accenture.png", import.meta.url).href,
+  satisfied: new URL("./satisfied.png", import.meta.url).href,
+  employee: new URL("./employee.png", import.meta.url).href,
+  trainer: new URL("./trainer.png", import.meta.url).href,
+  success: new URL("./success.png", import.meta.url).href,
+  certified: new URL("./certified.png", import.meta.url).href,
+  cloud: new URL("./cloud.png", import.meta.url).href,
+  database: new URL("./database.png", import.meta.url).href,
+  device: new URL("./device.png", import.meta.url).href,
+  devops: new URL("./devops.png", import.meta.url).href,
+  linux: new URL("./linux.png", import.meta.url).href,
+  react: new URL("./react.png", import.meta.url).href,
+  sharepoint: new URL("./sharepoint.png", import.meta.url).href,
+  test: new URL("./test.png", import.meta.url).href,
+  node: new URL("./node.png", import.meta.url).href,
+  github: new URL("./github.png", import.meta.url).href,
+  about: new URL("./mypic2.jpg", import.meta.url).href,
+};
+
+export default IMAGES;
