@@ -8,8 +8,7 @@ import Skills from "../Skills";
 import Qualifications from "../Qualifications";
 import Work from "../Work";
 import Contact from "../Contact";
-import { getData } from "../../store/ContentSlice";
-import { HEADER_LINKS } from "../../constants";
+import { getContent } from "../../store/ContentSlice";
 
 const findActiveLink = (links) => {
   return links.find((link) => link.active).linkDiv;
@@ -24,11 +23,11 @@ function Main() {
     links = useSelector((state) => state.headerLinks.links);
 
   useEffect(() => {
-    dispatch(getData("skills"));
-    dispatch(getData("achievement"));
-    dispatch(getData("qualification"));
-    dispatch(getData("workExperience"));
-    dispatch(getData("aboutMe"));
+    dispatch(getContent({ type: "skills" }));
+    dispatch(getContent({ type: "achievement" }));
+    dispatch(getContent({ type: "qualification" }));
+    dispatch(getContent({ type: "workExperience", order: "endDate" }));
+    dispatch(getContent({ type: "aboutMe" }));
   }, []);
 
   return (

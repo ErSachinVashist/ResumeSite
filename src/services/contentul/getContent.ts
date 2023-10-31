@@ -1,10 +1,12 @@
 const getContent = (client) => {
-    return async (content_type) => {
+    return async (content_type, { order }) => {
+        const filter = {
+            select: 'fields',
+            content_type,
+        }
+        if (order) filter.order = `fields.${order}`
         try {
-            const entries = await client.getEntries({
-                select: 'fields',
-                content_type,
-            });
+            const entries = await client.getEntries(filter);
 
             const sanitizedEntries = entries.items.map((item) => {
                 const icon = item?.fields?.icon?.fields?.file?.url;

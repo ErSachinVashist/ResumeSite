@@ -36,7 +36,7 @@ function Work() {
               <p>{comp.role}</p>
               {comp.title}
               <br />
-              {`${comp.startDate} - ${comp.endDate}`}
+              {`${comp.startDate} to ${comp.endDate || "Present"}`}
             </div>
             <div className="workOverlay">
               <div>Description </div>{" "}
