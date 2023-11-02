@@ -9,9 +9,9 @@ function Header() {
     lastLinkArray = usePrevious(linkArray) || [],
     dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(makeActive());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(makeActive());
+  // }, [dispatch]);
 
   const handleLink = (linkDiv) => {
     changeMenu(false);

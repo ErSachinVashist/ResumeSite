@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { goUpSection } from "../../store/HeaderSlice";
+import classNames from "classnames";
 import { BsArrowRight } from "react-icons/bs";
+import { goUpSection } from "../../store/HeaderSlice";
 import Home from "../Home";
 import About from "../About";
 import Skills from "../Skills";
@@ -20,7 +21,8 @@ const goToLink = (link) => {
 
 function Main() {
   const dispatch = useDispatch(),
-    links = useSelector((state) => state.headerLinks.links);
+    links = useSelector((state) => state.headerLinks.links),
+    { isLoading } = useSelector((state) => state.contentData);
 
   useEffect(() => {
     dispatch(getContent({ type: "skills" }));
@@ -32,21 +34,26 @@ function Main() {
 
   return (
     <div className="mainDiv">
-      <button
-        className={
-          "cstbtn backBtn " +
-          (findActiveLink(links) !== "homeDiv" && "showUpBtn")
-        }
-        onClick={() => dispatch(goUpSection())}
-      >
-        <BsArrowRight size={50} />
-      </button>
-      <Home goToLink={goToLink} />
-      <About goToLink={goToLink} />
-      <Skills />
-      <Qualifications />
-      <Work />
-      <Contact goToLink={goToLink} />
+      <div className={classNames("loading", { hidden: !isLoading })}></div>
+      {!isLoading && (
+        <>
+          <button
+            className={
+              "cstbtn backBtn " +
+              (findActiveLink(links) !== "homeDiv" && "showUpBtn")
+            }
+            onClick={() => dispatch(goUpSection())}
+          >
+            <BsArrowRight size={50} />
+          </button>
+          <Home goToLink={goToLink} />
+          <About goToLink={goToLink} />
+          <Skills />
+          <Qualifications />
+          <Work />
+          <Contact goToLink={goToLink} />
+        </>
+      )}
     </div>
   );
 }

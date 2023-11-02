@@ -13,7 +13,9 @@ export const getContent = createAsyncThunk(
 
 const contentSlice = createSlice({
     name: 'contentSlice',
-    initialState: {},
+    initialState: {
+        isLoading: true
+    },
     reducers: {},
     extraReducers: {
         [getContent.pending]: (state) => {
@@ -21,11 +23,14 @@ const contentSlice = createSlice({
         },
         [getContent.fulfilled]: (state, { payload }) => {
             let data = payload.data
-            if (payload.type === 'aboutMe') data = payload.data[0]
+            if (payload.type === 'aboutMe') {
+                data = payload.data[0]
+                state.isLoading = false
+            }
             state[payload.type] = data
         },
         [getContent.rejected]: (state) => {
-            // state.loading = false
+            // state.isLoading = false
         }
     },
 })
