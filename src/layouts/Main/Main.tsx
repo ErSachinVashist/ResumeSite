@@ -8,6 +8,7 @@ import About from "../About";
 import Skills from "../Skills";
 import Qualifications from "../Qualifications";
 import Work from "../Work";
+import Gallery from "../Gallery";
 import Contact from "../Contact";
 import { getContent } from "../../store/ContentSlice";
 
@@ -30,6 +31,7 @@ function Main() {
     dispatch(getContent({ type: "qualification" }));
     dispatch(getContent({ type: "workExperience", order: "endDate" }));
     dispatch(getContent({ type: "aboutMe" }));
+    dispatch(getContent({ type: "gallery" }));
   }, []);
 
   return (
@@ -51,6 +53,7 @@ function Main() {
           <Skills />
           <Qualifications />
           <Work />
+          <Gallery />
           <Contact goToLink={goToLink} />
         </>
       )}

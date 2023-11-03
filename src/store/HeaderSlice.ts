@@ -21,6 +21,7 @@ const headerSlice = createSlice({
             { title: 'Skills', linkDiv: 'skillsDiv' },
             { title: 'Qualifications', linkDiv: 'qualDiv' },
             { title: 'Portfolio', linkDiv: 'workDiv' },
+            { title: 'Gallery', linkDiv: 'galleryDiv' },
             { title: 'Contact', linkDiv: 'contactDiv' }
         ]
     },

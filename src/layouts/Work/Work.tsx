@@ -48,9 +48,9 @@ function Work() {
       <Achievements achievement={achievement} />
       <button
         className="cstbtn nxtBtn"
-        onClick={() => dispatch(makeActive("contactDiv"))}
+        onClick={() => dispatch(makeActive("galleryDiv"))}
       >
-        Let's Connect
+        My Gallery
       </button>
       <br />
     </div>
