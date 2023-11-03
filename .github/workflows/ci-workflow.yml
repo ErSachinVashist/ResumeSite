@@ -25,6 +25,7 @@ jobs:
         env:
           VITE_CONTENTFUL_SPACE: ${{ secrets.CONTENTFUL_SPACE }}
           VITE_CONTENTFUL_TOKEN: ${{ secrets.CONTENTFUL_TOKEN }}
+          VITE_BACKEND_API_URL: ${{ vars.BACKEND_API_URL }}
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3

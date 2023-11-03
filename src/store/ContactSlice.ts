@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { toast, Slide } from 'react-toastify';
 
-const reqUrl = "process.env.REACT_APP_HOSTURL"
+const reqUrl = import.meta.env.VITE_BACKEND_API_URL
 
 export const sendMsg = createAsyncThunk(
     'contactData/sendMsg',
