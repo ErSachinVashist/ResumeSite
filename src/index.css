@@ -686,18 +686,15 @@ div.galleryDiv {
 }
 
 .achDiv {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-between;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
   margin-bottom: 50px;
   margin-top: 100px;
 }
 
 .achCard {
   display: flex;
-  min-width: 18%;
-  max-width: 18%;
   box-shadow: 0px 1px 5px 0px rgb(255 255 255 / 50%);
   flex-direction: column;
   align-items: center;
@@ -707,7 +704,7 @@ div.galleryDiv {
   color: white;
   font-size: var(--h5);
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .achCard > div:first-child {
@@ -956,6 +953,7 @@ div.galleryCard {
   }
   .achDiv {
     margin-top: 20px;
+    grid-template-columns: repeat(1, 1fr);
   }
   .achCard {
     min-width: 100%;
@@ -1042,10 +1040,9 @@ div.galleryCard {
   }
   .achDiv {
     margin-top: 20px;
+    grid-template-columns: repeat(2, 1fr);
   }
   .achCard {
-    min-width: 48%;
-    max-width: 48%;
     margin: 2% 0;
     padding: 0;
   }
