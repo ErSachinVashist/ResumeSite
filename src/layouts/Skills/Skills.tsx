@@ -15,38 +15,40 @@ function Skills() {
     <div className="skillsDiv">
       <div className="divHeading">Skills</div>
       <div>
-        My interpersonal skills allowed me to participate effectively as a
-        member or lead in different teams, satisfy client’s expectations, make
-        decisions and solve problems with other people, and work effectively
-        with team members. It helped me to make and live in a less stressful
-        working environment.
+        I have more than 7 years' experience building software for clients all
+        over the world. Below is a quick overview of my main technical and team
+        skill sets and technologies I use.
       </div>
-
-      <div className="skillsCircle">
-        {skillObj.softSkills.map((skill, index) => (
-          <div
-            key={index}
-            className="circle-border"
-            style={{
-              background: `linear-gradient(270deg, var(--activeColor) ${
-                skill.score * 10
-              }%, transparent 0%), linear-gradient(10deg, var(--activeColor) 50%, lightgray 50%)`,
-            }}
-          >
-            <div className="circle">{skill.title}</div>
-          </div>
-        ))}
-      </div>
-      <div className="skillsCard">
-        {skillObj.techSkills.map((skill, index) => (
-          <div key={index}>
-            <div>
+      <div className="skillsPartition">
+        <div>
+          {skillObj.softSkills.map((skill, index) => (
+            <div className="softSkillDiv" key={index}>
               <img src={skill.icon} alt="img" />
-              <p>{skill.title}</p>
-              {documentToReactComponents(skill.description)}
+              <b>{skill.title}</b>
+              <span>{documentToReactComponents(skill.description)}</span>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <div>
+          {skillObj.techSkills.map((skill, index) => (
+            <div
+              className="techSkillDiv"
+              style={{
+                backgroundImage: `linear-gradient(
+                  to right,
+                  var(--activeColor) ${skill.score * 10}%,
+                  rgba(0, 0, 0, 0) 10%
+                )`,
+              }}
+              key={index}
+            >
+              <img src={skill.icon} alt="img" />
+              <span>
+                {skill.title} <b>{skill.score * 10}%</b>
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
       <button
         className="cstbtn nxtBtn"

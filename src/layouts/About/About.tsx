@@ -23,7 +23,10 @@ function About(props) {
           >
             My Artillery
           </button>
-          <button className="cstbtn diffBtn" onClick={() => goToLink("resume")}>
+          <button
+            className="cstbtn diffBtn"
+            onClick={() => goToLink(aboutMe.resume)}
+          >
             Download CV
           </button>
         </div>

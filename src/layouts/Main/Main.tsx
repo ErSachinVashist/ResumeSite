@@ -26,10 +26,14 @@ function Main() {
     { isLoading } = useSelector((state) => state.contentData);
 
   useEffect(() => {
-    dispatch(getContent({ type: "skills" }));
+    dispatch(
+      getContent({ type: "skills", order: { field: "score", desc: true } })
+    );
     dispatch(getContent({ type: "achievement" }));
     dispatch(getContent({ type: "qualification" }));
-    dispatch(getContent({ type: "workExperience", order: "endDate" }));
+    dispatch(
+      getContent({ type: "workExperience", order: { field: "endDate" } })
+    );
     dispatch(getContent({ type: "aboutMe" }));
     dispatch(getContent({ type: "gallery" }));
   }, []);
