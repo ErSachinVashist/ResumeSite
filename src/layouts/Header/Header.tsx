@@ -26,7 +26,7 @@ function Header() {
   );
   return (
     <div className="cstHead">
-      <div>Hola !</div>
+      <div onClick={() => handleLink("homeDiv")}>Hola !</div>
       <div
         className="cstNavMenu"
         onClick={() => {

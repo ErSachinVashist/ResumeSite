@@ -136,6 +136,7 @@ body {
   font-family: "Pacifico", cursive;
   font-size: var(--h1);
   color: var(--activeColor);
+  cursor: pointer;
 }
 
 .cstNav {
